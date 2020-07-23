@@ -1,15 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-const mysql = require('mysql')
 const app = express()
 
-// const router = require('./routes')
+const router = require('./routes/mainroutes')
 const port = 1900
 
 //middleware
 app.use(bodyParser.json())
-// app.use(router)
+app.use(router)
+
 app.get('/', (req, res, next) => {
     console.log(req.body)
     //req.body,req.method,req.header,req.query....
@@ -17,7 +17,6 @@ app.get('/', (req, res, next) => {
     res.status(200)
         .send('Hello world')
 })
-
 app.listen(port, (err) => {
     if (err) {
         console.error("Server cannot open",err)
@@ -38,15 +37,4 @@ const db = mongoose.connect(connectionString,{
 .catch(err=>{
     console.error("Connect failed",err)
 })
-
-// const db = mysql.createConnection({
-//     host:"localhost",
-//     user:"root",
-//     password:"hinh100998"
-// })
-
-// db.connect(function(err){
-//     if(err) throw err;
-//     console.log("Connect success mySQL")
-// })
 
