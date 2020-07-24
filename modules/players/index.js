@@ -1,29 +1,28 @@
 const model = require('./model')
-// const model = require('./model')
-// const mongoose = require('mongoose')
 
 const handlers = {
     //api CRUD
-    //Nhap du lieu doi bong
+    //Nhap du lieu cau thu
     async create(req, res, next) {
         try {
             let data = req.body
             let item = await model.create(data)
             res.json(item)
-            // console.log("AAAAAAAAAAAAAA")
-           
         }
         catch (err) {
             next(err)
         }
     },
-    async getTeamDatas(req,res,next){
-        try{
-            let items = await model.find({})
+    //In ra du lieu tat ca cau thu 
+    async findMany(req, res, next) {
+        try {
+            let items = await model
+                .find({})
+                .populate('CLB','tenDoiBong')
 
             res.json(items)
         }
-        catch(err){
+        catch (err) {
             next(err)
         }
     }
