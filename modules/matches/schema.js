@@ -28,7 +28,7 @@ const schema = new mongoose.Schema({
     },
     thoiGian: {
         type: Date,
-        required: [true, 'Yeu cau moc thoi gian'],
+        required: [true, 'Yeu cau thoi gian dien ra tran dau'],
         default: '2020/1/1'
     },
     hightLightUrl: {
