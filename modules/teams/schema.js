@@ -21,11 +21,11 @@ const schema = new mongoose.Schema({
         type: String,
         required: [true, "Yeu cau nhap ten HLV"]
     },
-    Diem: {
-        type: Number,
-        required: [true, "Co diem moi tru hang duoc"],
-        default: 0
-    },
+    // Diem: {
+    //     type: Number,
+    //     required: [true, "Co diem moi tru hang duoc"],
+    //     default: 0
+    // },
     soTranThang: {
         type: Number,
         required: [true, "Co diem moi tru hang duoc"],

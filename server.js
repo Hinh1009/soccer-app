@@ -33,16 +33,14 @@ app.get('/require-token',
 
 //cors
 app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", '*');
-	res.header('Access-Control-Allow-Credentials', 'true')
-	res.header("Access-Control-Allow-Headers", "X-PINGOTHER, Content-Type");
-	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS");
-	next()
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header('Access-Control-Allow-Credentials', 'true')
+    res.header("Access-Control-Allow-Headers", "X-PINGOTHER, Content-Type");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS");
+    next()
 })
 
 app.use(router)
-
-app.get('/',(req,res) => res.send('Hello'))
 
 app.use((err, req, res, next) => {
     let message = err.message
@@ -51,11 +49,11 @@ app.use((err, req, res, next) => {
             message: err.message,
             stack: err.stack
         })
-        console.log(message)
+    console.log(message)
 })
 app.listen(port, (err) => {
     if (err) {
-        console.error("Server cannot open",err)
+        console.error("Server cannot open", err)
     }
     else {
         console.log(`server open on port ${port}`)
@@ -63,14 +61,14 @@ app.listen(port, (err) => {
 })
 
 const connectionString = "mongodb://localhost:27017/final-project"
-const db = mongoose.connect(connectionString,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
+const db = mongoose.connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
-.then(()=>{
-    console.log('Connect success to MongoDB')
-})
-.catch(err=>{
-    console.error("Connect failed",err)
-})
+    .then(() => {
+        console.log('Connect success to MongoDB')
+    })
+    .catch(err => {
+        console.error("Connect failed", err)
+    })
 

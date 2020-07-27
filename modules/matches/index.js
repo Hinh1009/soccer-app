@@ -1,4 +1,6 @@
 const model = require('./model')
+// const { update } = require('../auth/model')
+// const { delete } = require('../teams')
 
 const handlers = {
     //api CRUD
@@ -20,7 +22,56 @@ const handlers = {
                 .populate('doiChuNha', 'tenDoiBong')
                 .populate('doiKhach', 'tenDoiBong')
 
-                res.json(items)
+            res.json(items)
+        }
+        catch (err) {
+            next(err)
+        }
+    },
+    async findMatchById(req, res, next) {
+        try {
+            let id = req.params.id
+            let item = await model
+                .findById(id)
+                .populate('doiChuNha', 'tenDoiBong')
+                .populate('doiKhach', 'tenDoiBong')
+
+            res.json(item)
+        }
+        catch (err) {
+            next(err)
+        }
+    },
+    async update(req, res, next) {
+        try {
+            let data = req.body
+            let id = data._id
+            if (!id) {
+                throw new Error("Missing id")
+            }
+            let item = await model.findByIdAndUpdate(
+                id,
+                data, {
+                new: true
+            }
+            )
+                .populate('doiChuNha', 'tenDoiBong')
+                .populate('doiKhach', 'tenDoiBong')
+            res.json(item)
+        }
+        catch (err) {
+            next(err)
+        }
+    },
+    async delete(req, res, next) {
+        try {
+            let id = req.params.id
+
+            let item = await model.findByIdAndDelete(id)
+                .populate('doiChuNha', 'tenDoiBong')
+                .populate('doiKhach', 'tenDoiBong')
+
+            res.json(item)
         }
         catch (err) {
             next(err)

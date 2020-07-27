@@ -24,17 +24,27 @@ router.post('/api/team',teamHandlers.create)
 router.get('/api/team',teamHandlers.getTeamDatas)
 router.get('/api/team/:id',teamHandlers.getTeamById)
 router.put('/api/team',teamHandlers.update)
+router.delete('/api/team/:id',teamHandlers.delete)
 
 //api Epl players routes
 router.post('/api/player',playerHandlers.create)
 router.get('/api/player',playerHandlers.findMany)
+router.get('/api/player/:id',playerHandlers.findPlayerById)
+router.put('/api/player',playerHandlers.updatePlayer)
+router.delete('/api/player/:id',playerHandlers.delete)
 
 //api Epl matches routes
 router.post('/api/matches',matchHandlers.create)
 router.get('/api/matches',matchHandlers.findMany)
+router.get('/api/matches/:id',matchHandlers.findMatchById)
+router.put('/api/matches',matchHandlers.update)
+router.delete('/api/matches/:id',matchHandlers.delete)
 
 //api goal routes
 router.post('/api/goal',goalHandlers.create)
 router.get('/api/goal',goalHandlers.findMany)
+router.get('/api/goal/:id',goalHandlers.findGoalById)
+router.put('/api/goal',goalHandlers.update)
+router.delete('/api/goal/:id',goalHandlers.delete)
 
 module.exports = router

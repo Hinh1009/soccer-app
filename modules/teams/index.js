@@ -1,7 +1,6 @@
 const model = require('./model')
 const { update } = require('../auth/model')
-// const model = require('./model')
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 const handlers = {
     //api CRUD
@@ -9,6 +8,7 @@ const handlers = {
     async create(req, res, next) {
         try {
             let data = req.body
+           
             let item = await model.create(data)
             res.json(item)
             // console.log("AAAAAAAAAAAAAA")
@@ -51,6 +51,18 @@ const handlers = {
                 new: true
             }
             )
+            res.json(item)
+        }
+        catch (err) {
+            next(err)
+        }
+    },
+    async delete(req, res, next) {
+        try {
+            let id = req.params.id
+
+            let item = await model.findByIdAndDelete(id)
+
             res.json(item)
         }
         catch (err) {
