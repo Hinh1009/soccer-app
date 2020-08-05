@@ -1,5 +1,5 @@
 const model = require('./model')
-const { update } = require('../auth/model')
+// const { update } = require('../auth/model')
 const mongoose = require('mongoose')
 
 const handlers = {

@@ -1,4 +1,5 @@
 const model = require('./model')
+const mongoose = require('mongoose')
 
 const handlers = {
     //api CRUD
@@ -16,11 +17,45 @@ const handlers = {
     //In ra du lieu tat ca cau thu 
     async findMany(req, res, next) {
         try {
-            let items = await model
-                .find({})
-                .populate('CLB', 'tenDoiBong')
+            let {
+                pageIndex = 1,
+                pageSize = 10,
+                count,
+                sort = 'asc',
+                sortBy = 'tenCauThu',
+                search = '',
+                CLBID // ex: filter by categoryId
+            } = req.query
+            pageIndex = parseInt(pageIndex)
+            pageSize = parseInt(pageSize)
+            count = !!count
 
-            res.json(items)
+            let skip = (pageIndex - 1) * pageSize
+            let limit = pageSize
+            let conditions = {}
+            if (search) {
+                // find item with title contains search string
+                conditions.title = new RegExp(search, 'i')
+            }
+            if (CLBID) {
+                conditions.teams = mongoose.Types.ObjectId(CLBID)
+            }
+
+            if (count) {
+                let count = await model.countDocuments(conditions)
+                res.json({ count })
+            } else {
+                let items = await model
+                    .find(conditions)
+                    .skip(skip)
+                    .limit(limit)
+                    .sort({
+                        [sortBy]: sort
+                    })
+                    .populate('CLB', 'tenDoiBong')
+
+                res.json(items)
+            }
         }
         catch (err) {
             next(err)
@@ -50,7 +85,7 @@ const handlers = {
                 id,
                 data,
                 { new: true }
-            ).populate('CLB','tenDoiBong')
+            ).populate('CLB', 'tenDoiBong')
             res.json(item)
         }
         catch (err) {
