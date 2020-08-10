@@ -8,11 +8,11 @@ const schema = new mongoose.Schema({
     }],
     cauThuGhiBan:[{
         type: ObjectId,
-        ref: 'playerProfiles'
+        ref: 'newPlayerProfiles'
     }],
     cauThuKienTao:[{
         type: ObjectId,
-        ref: 'playerProfiles'
+        ref: 'newPlayerProfiles'
     }]
 })
 

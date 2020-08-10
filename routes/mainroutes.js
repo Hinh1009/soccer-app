@@ -6,7 +6,6 @@ const teamHandlers = require('../modules/teams')
 const playerHandlers = require('../modules/players')
 const matchHandlers = require('../modules/matches')
 const goalHandlers = require('../modules/goal')
-
 //api auth routes
 router.post('/api/auth/sign-up',authHandlers.signUp)
 router.post('/api/auth/sign-in',authHandlers.signIn)
@@ -27,11 +26,11 @@ router.put('/api/team',teamHandlers.update)
 router.delete('/api/team/:id',teamHandlers.delete)
 
 //api Epl players routes
-router.post('/api/player',playerHandlers.create)
-router.get('/api/player',playerHandlers.findMany)
-router.get('/api/player/:id',playerHandlers.findPlayerById)
-router.put('/api/player',playerHandlers.updatePlayer)
-router.delete('/api/player/:id',playerHandlers.delete)
+router.post('/api/players',playerHandlers.create)
+router.get('/api/players',playerHandlers.findMany)
+router.get('/api/players/:id',playerHandlers.findPlayerById)
+router.put('/api/players',playerHandlers.updatePlayer)
+router.delete('/api/players/:id',playerHandlers.delete)
 
 //api Epl matches routes
 router.post('/api/matches',matchHandlers.create)

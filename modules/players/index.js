@@ -24,7 +24,7 @@ const handlers = {
                 sort = 'asc',
                 sortBy = 'tenCauThu',
                 search = '',
-                CLBID // ex: filter by categoryId
+                clubId // ex: filter by categoryId
             } = req.query
             pageIndex = parseInt(pageIndex)
             pageSize = parseInt(pageSize)
@@ -35,10 +35,10 @@ const handlers = {
             let conditions = {}
             if (search) {
                 // find item with title contains search string
-                conditions.title = new RegExp(search, 'i')
+                conditions.tenCauThu = new RegExp(search, 'i')
             }
-            if (CLBID) {
-                conditions.teams = mongoose.Types.ObjectId(CLBID)
+            if (clubId) {
+                conditions.club = mongoose.Types.ObjectId(clubId)
             }
 
             if (count) {
@@ -52,7 +52,7 @@ const handlers = {
                     .sort({
                         [sortBy]: sort
                     })
-                    .populate('CLB', 'tenDoiBong')
+                    .populate('club', 'tenDoiBong')
 
                 res.json(items)
             }
@@ -66,7 +66,7 @@ const handlers = {
             let id = req.params.id
             let item = await model
                 .findById(id)
-                .populate('CLB', 'tenDoiBong')
+                .populate('club', 'tenDoiBong')
 
             res.json(item)
         }
@@ -85,7 +85,7 @@ const handlers = {
                 id,
                 data,
                 { new: true }
-            ).populate('CLB', 'tenDoiBong')
+            ).populate('club', 'tenDoiBong')
             res.json(item)
         }
         catch (err) {
@@ -97,7 +97,7 @@ const handlers = {
             let id = req.params.id
 
             let item = await model.findByIdAndDelete(id)
-                .populate('CLB', 'tenDoiBong')
+                .populate('club', 'tenDoiBong')
 
             res.json(item)
         }

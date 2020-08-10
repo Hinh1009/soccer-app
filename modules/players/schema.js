@@ -10,14 +10,14 @@ const schema = new mongoose.Schema({
         type: Number,
         require: [true, "Yeu cau nhap tuoi"]
     },
-    CLB:[{
+    club:[{
         type:ObjectId,
         ref:'teamProfiles'
     }],
     soAo: {
         type: Number,
         required: [true, "Yeu cau so ao cau thu"],
-        unique: true
+        unique:false
     },
     viTri: {
         type: String,
