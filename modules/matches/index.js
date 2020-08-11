@@ -21,6 +21,7 @@ const handlers = {
                 .find({})
                 .populate('doiChuNha', 'tenDoiBong')
                 .populate('doiKhach', 'tenDoiBong')
+                .populate('stadium', 'sanNha')
 
             res.json(items)
         }
@@ -35,6 +36,7 @@ const handlers = {
                 .findById(id)
                 .populate('doiChuNha', 'tenDoiBong')
                 .populate('doiKhach', 'tenDoiBong')
+                .populate('stadium', 'sanNha')
 
             res.json(item)
         }
@@ -57,6 +59,8 @@ const handlers = {
             )
                 .populate('doiChuNha', 'tenDoiBong')
                 .populate('doiKhach', 'tenDoiBong')
+                .populate('stadium', 'sanNha')
+
             res.json(item)
         }
         catch (err) {
@@ -70,6 +74,7 @@ const handlers = {
             let item = await model.findByIdAndDelete(id)
                 .populate('doiChuNha', 'tenDoiBong')
                 .populate('doiKhach', 'tenDoiBong')
+                .populate('stadium', 'sanNha')
 
             res.json(item)
         }

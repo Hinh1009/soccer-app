@@ -12,6 +12,11 @@ const schema = new mongoose.Schema({
         ref: 'teamProfiles',
         required: [true, "Yeu cau can co doi khach"]
     }],
+    stadium: [{
+        type: ObjectId,
+        ref: 'teamProfiles',
+        required: [true, "Svd cua doi chu nha"]
+    }],
     vongDau: {
         type: Number,
         required: [true, 'Yeu cau biet lich su dau']

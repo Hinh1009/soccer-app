@@ -37,7 +37,8 @@ const schema = new mongoose.Schema({
     },
     avatarUrl: {
         type: String,
-        required: [true, "Yeu cau nhan dien cau thu"]
+        required: [true, "Yeu cau nhan dien cau thu"],
+        default:"sdfghjklasjdh.jpg"
     },
     soBan: {
         type: String,
