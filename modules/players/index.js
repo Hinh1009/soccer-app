@@ -24,7 +24,7 @@ const handlers = {
                 sort = 'asc',
                 sortBy = 'tenCauThu',
                 search = '',
-                clubId // ex: filter by categoryId
+                clubId
             } = req.query
             pageIndex = parseInt(pageIndex)
             pageSize = parseInt(pageSize)
@@ -41,6 +41,8 @@ const handlers = {
                 conditions.club = mongoose.Types.ObjectId(clubId)
             }
 
+            let sortObject = createSortObject(sort, sortBy)
+
             if (count) {
                 let count = await model.countDocuments(conditions)
                 res.json({ count })
@@ -49,9 +51,7 @@ const handlers = {
                     .find(conditions)
                     .skip(skip)
                     .limit(limit)
-                    .sort({
-                        [sortBy]: sort
-                    })
+                    .sort(sortObject)
                     .populate('club', 'tenDoiBong')
 
                 res.json(items)
@@ -107,5 +107,18 @@ const handlers = {
     }
 
 }
+
+function createSortObject(sortStr, sortByStr) {
+        let sortBySplit = sortByStr.split(',')
+        let sortSplit = sortStr.split(',')
+        let sortObject = {}
+        for(let i = 0; i < sortBySplit.length; i++) {
+            let sortBy = sortBySplit[i]
+            let sort = sortSplit[i] == 'asc' ? 1 : -1
+            sortObject[sortBy] = sort
+        }
+        return sortObject
+    }
+
 
 module.exports = handlers
