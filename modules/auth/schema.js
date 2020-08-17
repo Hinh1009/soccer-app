@@ -2,29 +2,34 @@ const mongoose = require('mongoose')
 const EMAIL_REGEX = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const schema = new mongoose.Schema({
-    email:{
+    email: {
         type: String,
-        required:true,
+        required: true,
         unique: true,
         validate: {
-            validator(value){
+            validator(value) {
                 return EMAIL_REGEX.test(value)
             }
         }
     },
-    password:{
+    password: {
         type: String,
         required: true
     },
-    name:{
+    name: {
         type: String,
         required: true
     },
     birthdate: Date,
-    state:{
+    state: {
         type: String,
         required: true,
-        enum:["available","disable"]
+        enum: ["available", "disable"]
+    },
+    admin: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 })
 

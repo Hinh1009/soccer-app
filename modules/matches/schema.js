@@ -12,6 +12,16 @@ const schema = new mongoose.Schema({
         ref: 'teamProfiles',
         required: [true, "Yeu cau can co doi khach"]
     }],
+    logoDoiChuNha: [{
+        type: ObjectId,
+        ref: 'teamProfiles',
+        required: [true, "Yeu cau can co doi khach"]
+    }],
+    logoDoiKhach: [{
+        type: ObjectId,
+        ref: 'teamProfiles',
+        required: [true, "Yeu cau can co doi khach"]
+    }],
     stadium: [{
         type: ObjectId,
         ref: 'teamProfiles',
@@ -40,6 +50,10 @@ const schema = new mongoose.Schema({
         type: String,
         required: [true, 'Danh cho fan cua tran dau 5'],
         default: 'Oopps!!!!Sorry!!!Tran dau van chua co hightlight hoac van chua dien ra'
+    },
+    status: {
+        type: Boolean,
+        default: false
     }
 })
 

@@ -109,16 +109,16 @@ const handlers = {
 }
 
 function createSortObject(sortStr, sortByStr) {
-        let sortBySplit = sortByStr.split(',')
-        let sortSplit = sortStr.split(',')
-        let sortObject = {}
-        for(let i = 0; i < sortBySplit.length; i++) {
-            let sortBy = sortBySplit[i]
-            let sort = sortSplit[i] == 'asc' ? 1 : -1
-            sortObject[sortBy] = sort
-        }
-        return sortObject
+    let sortBySplit = sortByStr.split(',')
+    let sortSplit = sortStr.split(',')
+    let sortObject = {}
+    for (let i = 0; i < sortBySplit.length; i++) {
+        let sortBy = sortBySplit[i]
+        let sort = sortSplit[i] == 'asc' ? 1 : -1
+        sortObject[sortBy] = sort
     }
+    return sortObject
+}
 
 
 module.exports = handlers

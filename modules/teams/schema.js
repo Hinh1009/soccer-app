@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
     tenDoiBong: {
         type: String,
         required: [true, "Yeu cau nhap ten doi bong"],
-        unique:true
+        unique: true
     },
     namThanhLap: {
         type: Number,
@@ -12,7 +12,8 @@ const schema = new mongoose.Schema({
     },
     logoDoiBong: {
         type: String,
-        required: [true, "Yeu cau ava doi bong"]
+        required: [true, "Yeu cau ava doi bong"],
+        default: "asdfghjkl.jpg"
     },
     sanNha: {
         type: String,

@@ -46,20 +46,29 @@ const handlers = {
     async update(req, res, next) {
         try {
             let data = req.body
-            let { _id: id, ...dataToUpdate } = data
-            if (!id) {
+
+            let { _id, ...dataToUpdate } = data
+            if (!_id) {
                 throw new Error("Missing id")
             }
-            let item = await model.findById(id)
+            let item = await model.findById(_id)
             Object.assign(item, dataToUpdate)
             calcDiem(item)
             calcHieuSo(item)
-            await item.update()
+            console.log("AAAAAAAAAA")
+
+            await model.updateOne(
+                { _id: _id },
+                dataToUpdate
+            )
             res.json(item)
         }
         catch (err) {
             next(err)
         }
+        // res.json({
+        //     message: "Hello"
+        // })
     },
     async delete(req, res, next) {
         try {
