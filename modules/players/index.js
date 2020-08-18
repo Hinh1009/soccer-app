@@ -53,6 +53,7 @@ const handlers = {
                     .limit(limit)
                     .sort(sortObject)
                     .populate('club', 'tenDoiBong')
+                    // .populate('club','logoDoiBong')
 
                 res.json(items)
             }
@@ -67,8 +68,11 @@ const handlers = {
             let item = await model
                 .findById(id)
                 .populate('club', 'tenDoiBong')
+                // .populate('club','logoDoiBong')
+                // .populate('club', 'tenDoiBong')
 
             res.json(item)
+            // console.log(item)
         }
         catch (err) {
             next(err)
@@ -86,6 +90,8 @@ const handlers = {
                 data,
                 { new: true }
             ).populate('club', 'tenDoiBong')
+            // .populate('club','logoDoiBong')
+
             res.json(item)
         }
         catch (err) {
@@ -98,6 +104,7 @@ const handlers = {
 
             let item = await model.findByIdAndDelete(id)
                 .populate('club', 'tenDoiBong')
+                // .populate('club','logoDoiBong')
 
             res.json(item)
         }

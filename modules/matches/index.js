@@ -128,7 +128,7 @@ function updateTables(soBanDoiNha, soBanDoiKhach, doiNhaId, doiKhachId) {
             team.hieuSo = (team.soBanThang - team.soBanThua)
 
             clubModel.findByIdAndUpdate(doiNhaId, team, (err, newhometeam) => {
-                console.log("new team: ", newhometeam)
+                // console.log("new team: ", newhometeam)
             })
         })
 
@@ -140,10 +140,62 @@ function updateTables(soBanDoiNha, soBanDoiKhach, doiNhaId, doiKhachId) {
             team.hieuSo = (team.soBanThang - team.soBanThua)
 
             clubModel.findByIdAndUpdate(doiKhachId, team, (err, newawayteam) => {
-                console.log("new team: ", newawayteam)
+                // console.log("new team: ", newawayteam)
             })
         })
 
+    }
+    else if (soBanDoiNha < soBanDoiKhach) {
+        clubModel.findById(doiNhaId, (err, team) => {
+            // team.Diem += 3
+            team.soTranThua += 1
+            team.soBanThang += soBanDoiNha
+            team.soBanThua += soBanDoiKhach
+            team.hieuSo = (team.soBanThang - team.soBanThua)
+
+            clubModel.findByIdAndUpdate(doiNhaId, team, (err, newhometeam) => {
+                // console.log("new team: ", newhometeam)
+            })
+        })
+
+        clubModel.findById(doiKhachId, (err, team) => {
+            team.Diem += 3
+            team.soTranThang += 1
+            team.soBanThang += soBanDoiKhach
+            team.soBanThua += soBanDoiNha
+            team.hieuSo = (team.soBanThang - team.soBanThua)
+
+            clubModel.findByIdAndUpdate(doiKhachId, team, (err, newawayteam) => {
+                // console.log("new team: ", newawayteam)
+            })
+        })
+
+    }
+
+    else {
+        clubModel.findById(doiNhaId, (err, team) => {
+            team.Diem += 1
+            team.soTranHoa += 1
+            team.soBanThang += soBanDoiNha
+            team.soBanThua += soBanDoiKhach
+            team.hieuSo = (team.soBanThang - team.soBanThua)
+
+            clubModel.findByIdAndUpdate(doiNhaId, team, (err, newhometeam) => {
+                // console.log("new team: ", newhometeam)
+            })
+        })
+
+        clubModel.findById(doiKhachId, (err, team) => {
+            team.Diem += 1
+            team.soTranHoa += 1
+            team.soBanThang += soBanDoiKhach
+            team.soBanThua += soBanDoiNha
+            team.hieuSo = (team.soBanThang - team.soBanThua)
+
+            clubModel.findByIdAndUpdate(doiKhachId, team, (err, newawayteam) => {
+                // console.log("new team: ", newawayteam)
+            })
+        })
     }
 
 }
