@@ -19,6 +19,11 @@ const schema = new mongoose.Schema({
         type: String,
         required: [true, "Doi nao chang can co san nha"]
     },
+    stadiumImg: {
+        type: String,
+        required: [true, "Cho xin anh san van dong due"],
+        default: "not have stadium now"
+    },
     tenHLV: {
         type: String,
         required: [true, "Yeu cau nhap ten HLV"]
@@ -57,6 +62,11 @@ const schema = new mongoose.Schema({
         type: Number,
         required: [true, "Co diem moi tru hang duoc"],
         default: 0
+    },
+    description: {
+        type: String,
+        required: [true, "Them mo ta doi bong"],
+        default: "An U.K profesional Football"
     }
 })
 

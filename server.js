@@ -6,7 +6,6 @@ const router = require('./routes/mainroutes')
 const { readTokenMiddleware, authenticationTokenMiddleware } = require('./modules/auth/index')
 const app = express()
 
-
 const port = 1900
 
 //middleware
@@ -41,6 +40,11 @@ app.use(function (req, res, next) {
 })
 
 app.use(router)
+
+app.use(express.static(`${__dirname}/dist`))
+app.get('*', (req, res) => {
+    res.sendFile(`${__dirname}/dist/index.html`)
+})
 
 app.use((err, req, res, next) => {
     let message = err.message

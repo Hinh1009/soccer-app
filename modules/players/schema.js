@@ -8,16 +8,17 @@ const schema = new mongoose.Schema({
     },
     namSinh: {
         type: Number,
-        require: [true, "Yeu cau nhap tuoi"]
+        require: [true, "Yeu cau nhap tuoi"],
+        default: 1998
     },
-    club:[{
-        type:ObjectId,
-        ref:'teamProfiles'
+    club: [{
+        type: ObjectId,
+        ref: 'teamProfiles'
     }],
     soAo: {
         type: Number,
         required: [true, "Yeu cau so ao cau thu"],
-        unique:false
+        unique: false
     },
     viTri: {
         type: String,
@@ -38,7 +39,7 @@ const schema = new mongoose.Schema({
     avatarUrl: {
         type: String,
         required: [true, "Yeu cau nhan dien cau thu"],
-        default:"https://lh3.googleusercontent.com/proxy/nBtRHLhWYnQVKvGkC4gIEGh_0NPF5epS7zBOvmjZN2Asvra0SjEVJUGwti7Pbomxl4xW1kjabSd9mUiLlvw2GinlLufj8MKfHO1CbAXbuJjoO0oALkNqOg"
+        default: "https://lh3.googleusercontent.com/proxy/nBtRHLhWYnQVKvGkC4gIEGh_0NPF5epS7zBOvmjZN2Asvra0SjEVJUGwti7Pbomxl4xW1kjabSd9mUiLlvw2GinlLufj8MKfHO1CbAXbuJjoO0oALkNqOg"
     },
     soBan: {
         type: String,
